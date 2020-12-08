@@ -76,6 +76,7 @@ export default {
           api.login(this.loginForm).then((res) => {
             console.log(res);
             // 登陆成功，跳转
+            this.$store.dispatch('setUserInfo', res); // vuex存储user信息
             this.$router.push({
               name: 'Home',
             });
