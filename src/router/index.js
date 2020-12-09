@@ -33,7 +33,18 @@ const ayncRouterMap = [{
       icon: 'file-add',
     },
     component: () => import('../views/pages/ProductAdd.vue'),
-  }, {
+  },
+  {
+    path: 'edit/:id',
+    name: 'ProductEdit',
+    meta: {
+      title: '编辑商品',
+      hidden: true,
+      icon: 'file-add',
+    },
+    component: () => import('../views/pages/ProductAdd.vue'),
+  },
+  {
     path: 'category',
     name: 'Category',
     meta: {

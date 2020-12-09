@@ -10,11 +10,11 @@
     <div class="breadcrumb">
       <a-breadcrumb v-if="currentRoute.length > 1">
         <a-breadcrumb-item>{{
-          currentRoute[0] ? currentRoute[0].meta.title : ''
+          currentRoute[0] ? currentRoute[0].meta.title : ""
         }}</a-breadcrumb-item>
         <a-breadcrumb-item>
           <router-link :to="{ name: currentRoute[1].name }">{{
-            currentRoute[1] ? currentRoute[1].meta.title : ''
+            currentRoute[1] ? currentRoute[1].meta.title : ""
           }}</router-link>
         </a-breadcrumb-item>
       </a-breadcrumb>
@@ -53,3 +53,11 @@ export default {
   },
 };
 </script>
+<style lang="less">
+.user-info {
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 1000;
+}
+</style>
