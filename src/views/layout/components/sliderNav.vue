@@ -8,14 +8,20 @@
       <a-icon :type="$store.state.collapsed ? 'menu-unfold' : 'menu-fold'" />
     </a-button>
     <div class="breadcrumb">
-      <a-breadcrumb>
-        <a-breadcrumb-item>首页</a-breadcrumb-item>
-        <a-breadcrumb-item><a href="">统计</a></a-breadcrumb-item>
+      <a-breadcrumb v-if="currentRoute.length > 1">
+        <a-breadcrumb-item>{{
+          currentRoute[0] ? currentRoute[0].meta.title : ''
+        }}</a-breadcrumb-item>
+        <a-breadcrumb-item>
+          <router-link :to="{ name: currentRoute[1].name }">{{
+            currentRoute[1] ? currentRoute[1].meta.title : ''
+          }}</router-link>
+        </a-breadcrumb-item>
       </a-breadcrumb>
     </div>
     <ul class="user-info">
       <li>
-        {{$store.state.user.username}}
+        {{ $store.state.user.username }}
         <a-icon type="down" />
       </li>
       <li class="login-out" @click="logout">退出</li>
@@ -24,6 +30,16 @@
 </template>
 <script>
 export default {
+  data() {
+    return {
+      currentRoute: this.$router.currentRoute.matched,
+    };
+  },
+  watch: {
+    $route() {
+      this.currentRoute = this.$router.currentRoute.matched;
+    },
+  },
   methods: {
     toggleCollapsed() {
       this.$store.dispatch('ChangeCollapsed');
