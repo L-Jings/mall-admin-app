@@ -73,6 +73,17 @@ export default {
     };
   },
   props: ['form'],
+  created() {
+    if (this.form.images.length > 0) {
+      // 如果form中图片数据存在,map处理成专门对对象数据格式
+      this.fileList = this.form.images.map((item, index) => ({
+        uid: index,
+        name: `image-${index}.png`,
+        status: 'done',
+        url: item,
+      }));
+    }
+  },
   methods: {
     handleChange({ file, fileList }) {
       console.log(file);
